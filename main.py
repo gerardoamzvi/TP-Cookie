@@ -5,9 +5,11 @@
       size : A 2-tuple, containing (width, height) in pixels. (Source -----> https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.new)
 
 """
-from calc import distance_x_y
+
+from calc import distance_x_y, equa_diff
 from PIL import Image
 import numpy as np
+
 
 img = Image.open("cookie.png")
 arr = np.array(img)
@@ -61,14 +63,19 @@ print(f"Masse élémentaire du chocolat :{masse_elementaire_chocolat} g/pixels")
 print(f"Masse élémentaire du pate :{masse_elementaire_pate} g/pixels")
 
 
-moment_inertie_chocolat = (sum([distance_x_y(i, coordonnee_rouge) * masse_elementaire_chocolat for i in liste_chocolat]))
-moment_inertie_pate = (sum([distance_x_y(i, coordonnee_rouge) * masse_elementaire_pate for i in liste_pate]))
+moment_inertie_chocolat = (sum([distance_x_y(i, coordonnee_rouge) * masse_elementaire_chocolat*10**-3 for i in liste_chocolat]))
+moment_inertie_pate = (sum([distance_x_y(i, coordonnee_rouge) * masse_elementaire_pate*10**-3 for i in liste_pate]))
 moment_inertie_cookie= moment_inertie_chocolat + moment_inertie_pate
 
 print(f"Moment d'inertie du chocolat :{moment_inertie_chocolat} kg.mm2")
 print(f"Moment d'inertie de la pate :{moment_inertie_pate} kg.mm2")
-print(f"Moment d'inertie du cookie :{moment_inertie_cookie} kg.mm2")
-
+print(f"Moment d'inertie du cookie :{moment_inertie_cookie} kg.mm2 ")
+print(f"Moment d'inertie du cookie :{moment_inertie_cookie*10**-6} kg.m2 ")
 
 """Travail 5"""
 
+"""Travail 7"""
+
+
+vitesse_angulaire = equa_diff(-np.pi/2)
+print(f"Vitesse angulaire :{vitesse_angulaire} rad/s")
